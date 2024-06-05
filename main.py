@@ -11,7 +11,7 @@ class ImagePainter:
         self.gray_background = cv2.cvtColor(self.mask, cv2.COLOR_BGR2GRAY)
         self.contours, _ = cv2.findContours(self.gray_background, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    def process_data(self):
+    def process_contours(self):
         result_img = np.zeros_like(self.color_mask)
         contours_img = np.zeros_like(self.color_mask)
         cv2.drawContours(contours_img, self.contours, -1, (0, 0, 0), 1)
@@ -42,6 +42,6 @@ if __name__ == '__main__':
         image = ImagePainter(args.mask, args.color_mask)
     else:
         image = ImagePainter()
-    image.process_data()
+    image.process_contours()
 
 
